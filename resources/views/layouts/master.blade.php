@@ -92,6 +92,54 @@
                 </p>
               </a>
             </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-sitemap"></i>
+                <p>
+                  Master Data
+                  <i class="fas fa-angle-left right"></i>
+                    <span class="badge badge-info right">6</span>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                    <a href="{{ route('user.index') }}" class="nav-link">
+                    <i class="fas fa-users nav-icon"></i>
+                    <p>User</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="{{ route('company.index') }}" class="nav-link">
+                    <i class="far fa-hospital nav-icon"></i>
+                    <p>Company</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="{{ route('checkup.index') }}" class="nav-link">
+                    <i class="fas fa-check-circle nav-icon"></i>
+                    <p>Checkup</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="{{ route('patient.index') }}" class="nav-link">
+                    <i class="far fa-address-book nav-icon"></i>
+                    <p>Patient</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="#" class="nav-link">
+                    <i class="far fa-credit-card nav-icon"></i>
+                    <p>Payment</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Output</p>
+                  </a>
+              </li>
+            </ul>
+          </li>
             <li class="nav-item">
               <a href="{{ __('myprofile') }}" class="nav-link">
                 <i class="nav-icon fas fa-heart"></i>
