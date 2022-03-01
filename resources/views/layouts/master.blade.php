@@ -127,13 +127,13 @@
                     </a>
                     </li>
                     <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('payment.index') }}" class="nav-link">
                     <i class="far fa-credit-card nav-icon"></i>
                     <p>Payment</p>
                     </a>
                     </li>
                     <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('output.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Output</p>
                   </a>

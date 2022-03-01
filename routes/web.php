@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CheckupController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\OutputController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +24,8 @@ Route::get('/', function () {
     return view('/auth/login');
 });
 
-//route sementara admin
+//route sementara dashboard admin
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 //route user *
 Route::resource('user', UserController::class)->except(['show']);
@@ -35,10 +39,15 @@ Route::resource('checkup', CheckupController::class)->except(['show']);
 //route patient *
 Route::resource('patient', PatientController::class)->except(['show']);
 
+//route payment *
+Route::resource('payment', PaymentController::class)->except(['show']);
+
+//route Output *
+Route::resource('output', OutputController::class)->except(['show']);
+
 
 
 //route sementara customer
-Route::get('/dashboard', 'App\Http\Controllers\CustomerController@dashboard');
 Route::get('/register', 'App\Http\Controllers\RegisterController@index');
 Route::get('/myprofile', 'App\Http\Controllers\CustomerController@myprofile');
 Route::get('/account', 'App\Http\Controllers\CustomerController@account');
