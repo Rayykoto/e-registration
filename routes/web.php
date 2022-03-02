@@ -62,11 +62,9 @@ Route::resource('setpayment', SetpaymentController::class)->except(['show']);
 Route::resource('setoutput', SetoutputController::class)->except(['show']);
 
 
-
-
-
 //route sementara customer
 Route::get('/register', 'App\Http\Controllers\RegisterController@index');
+Route::post('/register', 'App\Http\Controllers\RegisterController@store')->name('register.store');
 Route::get('/myprofile', 'App\Http\Controllers\CustomerController@myprofile');
 Route::get('/account', 'App\Http\Controllers\CustomerController@account');
 Route::get('/product', 'App\Http\Controllers\CustomerController@product');
