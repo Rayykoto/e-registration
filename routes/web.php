@@ -6,6 +6,10 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OutputController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SetcheckupController;
+use App\Http\Controllers\SetoutputController;
+use App\Http\Controllers\SetpatientController;
+use App\Http\Controllers\SetpaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +48,20 @@ Route::resource('payment', PaymentController::class)->except(['show']);
 
 //route Output *
 Route::resource('output', OutputController::class)->except(['show']);
+
+//route SetPatient *
+Route::resource('setpatient', SetpatientController::class)->except(['show']);
+
+//route SetCheckUp *
+Route::resource('setcheckup', SetcheckupController::class)->except(['show']);
+
+//route SetPayment *
+Route::resource('setpayment', SetpaymentController::class)->except(['show']);
+
+//route SetOutput *
+Route::resource('setoutput', SetoutputController::class)->except(['show']);
+
+
 
 
 

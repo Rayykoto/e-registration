@@ -140,6 +140,42 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+              <a href="{{ route('setpatient.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-recycle"></i>
+                <p>
+                  Setting Patient
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{ route('setcheckup.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-recycle"></i>
+                <p>
+                  Setting Checkup
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{ route('setpayment.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-recycle"></i>
+                <p>
+                  Setting Payment
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{ route('setoutput.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-recycle"></i>
+                <p>
+                  Setting Output
+                </p>
+              </a>
+            </li>
+
             <li class="nav-item">
               <a href="{{ __('myprofile') }}" class="nav-link">
                 <i class="nav-icon fas fa-heart"></i>

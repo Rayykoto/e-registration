@@ -92,7 +92,7 @@
     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-circle"></i></span>
       <div class="info-box-content">
         <span class="info-box-text">Output</span>
-    <span class="info-box-number">out</span>
+    <span class="info-box-number">Out</span>
       </div>
   </div>
 </div>
