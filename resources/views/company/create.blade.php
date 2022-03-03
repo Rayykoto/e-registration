@@ -52,6 +52,11 @@
                   </div>
 
                   <div class="form-group">
+                    <label>Company Cabang</label>
+                    <input type="text" placeholder="Company City" class="form-control">
+                  </div>
+
+                  <div class="form-group">
                     <label>Company Address</label>
                     <input type="text" placeholder="Alamat Perusahaan" class="form-control">
                   </div>

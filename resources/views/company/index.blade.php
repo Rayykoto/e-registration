@@ -44,6 +44,7 @@
                                     <th>No</th>
                                     <th>Company Name</th>
                                     <th>Company City</th>
+                                    <th>Company Branch</th>
                                     <th>Company Address</th>
                                     <th>Status</th>
                                 </tr>
@@ -54,6 +55,7 @@
                                     <td>Wynacom</td>
                                     <td>Wynahealth</td>
                                     <td>Jl. Boulevard</td>
+                                    <td>Cabang JKT</td>
                                     <td class="text-center">
                                        <!-- <div class="btn-group btn-group-sm"> -->
                                         <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
