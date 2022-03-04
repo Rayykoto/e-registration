@@ -10,15 +10,15 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('auth.register');
+        // return view('auth.register');
     }
 
     public function store(Request $request)
     {
         Register::create([
-            'user_name' => $request->user_name,
-            'user_email' => $request->user_email,
-            'user_pwd' => Hash::make($request->user_pwd),
+            'name' => $request->name,
+            'email' => $$request->email,
+            'password' => Hash::make($request->password),
             'user_lvl' => '1',
         ]);
         return redirect('register')->with('success', 'Data berhasil Disimpan');

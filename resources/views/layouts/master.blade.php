@@ -7,7 +7,8 @@
   <title>WYNACOM - LIS</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
@@ -16,12 +17,14 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  <link rel="stylesheet"
+    href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
@@ -63,7 +66,8 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="{{ asset('assets/index3.html') }}" class="brand-link">
-        <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+          class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light"><b>WYNACOM</b></span>
       </a>
 
@@ -75,7 +79,7 @@
             <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Customer</a>
+            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
           </div>
         </div>
         <!-- Sidebar Menu -->
@@ -92,55 +96,55 @@
                 </p>
               </a>
             </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-sitemap"></i>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-sitemap"></i>
                 <p>
                   Master Data
                   <i class="fas fa-angle-left right"></i>
-                    <span class="badge badge-info right">6</span>
-                    </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
-                    <a href="{{ route('user.index') }}" class="nav-link">
+                  <span class="badge badge-info right">6</span>
+                </p>
+              </a>
+              <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                  <a href="{{ route('user.index') }}" class="nav-link">
                     <i class="fas fa-users nav-icon"></i>
                     <p>User</p>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="{{ route('company.index') }}" class="nav-link">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('company.index') }}" class="nav-link">
                     <i class="far fa-hospital nav-icon"></i>
                     <p>Company</p>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="{{ route('checkup.index') }}" class="nav-link">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('checkup.index') }}" class="nav-link">
                     <i class="fas fa-check-circle nav-icon"></i>
                     <p>Checkup</p>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="{{ route('patient.index') }}" class="nav-link">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('patient.index') }}" class="nav-link">
                     <i class="far fa-address-book nav-icon"></i>
                     <p>Patient</p>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="{{ route('payment.index') }}" class="nav-link">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('payment.index') }}" class="nav-link">
                     <i class="far fa-credit-card nav-icon"></i>
                     <p>Payment</p>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="{{ route('output.index') }}" class="nav-link">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('output.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Output</p>
                   </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
               <a href="{{ route('setpatient.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-recycle"></i>
                 <p>
@@ -201,11 +205,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>
                   Logout
                 </p>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
               </a>
             </li>
           </ul>
