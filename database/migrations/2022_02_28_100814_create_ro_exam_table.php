@@ -16,7 +16,7 @@ class CreateRoExamTable extends Migration
         Schema::create('ro_exam', function (Blueprint $table) {
             $table->id('exam_id');
             $table->string('exam_name', 50);
-            $table->number('label', 50);
+            $table->string('label', 50);
             $table->string('sample_type', 3);
             $table->string('price', 12);
             $table->timestamps();
