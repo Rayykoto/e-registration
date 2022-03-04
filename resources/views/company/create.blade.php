@@ -39,7 +39,7 @@
               </div>
               <div class="card-body">
 
-                <form @submit.prevent="storeCategory">
+                <form method="POST" action="{{ route('company.store') }}">
 
                   <div class="form-group">
                     <label>Company Name</label>

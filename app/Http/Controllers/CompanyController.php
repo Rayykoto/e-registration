@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Company;
 
 class CompanyController extends Controller
 {
@@ -34,7 +35,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $company = new Company();
+        $company->company_name = $request->company_name;
+        $company->company_address = $request->company_address;
+        $company->company_city = $request->company_city;
+        
+        $company->save();
+
+        return response()->json('Data Berhasil Disimpan', 200);
     }
 
     /**
@@ -45,7 +53,9 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $company = Company::find($id);
+
+        return response()->json($company);
     }
 
     /**
@@ -56,7 +66,7 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('company.edit');
     }
 
     /**
@@ -68,7 +78,13 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $company = Company::find($id);
+        $company->nama_company = $request->nama_company;
+        $company->company_address = $request->company_address;
+        $company->company_city = $request->company_city;
+        $company->update();
+
+        return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
@@ -79,6 +95,9 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $company = Company::find($id);
+        $company->delete();
+
+        return response(null, 204);
     }
 }
