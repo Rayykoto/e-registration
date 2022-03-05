@@ -60,7 +60,7 @@
                         <div class="col-8">
                             <div class="icheck-primary">
                                 <input type="checkbox" class="form-check-input" name="remember" id="remember" {{
-                                    old('remember') ? 'checked' : '' }}>
+                                    old('remember') ? 'checked' : '' }} required>
                                 <label for="remember">
                                     Remember Me
                                 </label>
