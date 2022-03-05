@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'user_lvl' => '1',
+            'user_lvl' => 'user',
         ]);
         return redirect()->back();
     }

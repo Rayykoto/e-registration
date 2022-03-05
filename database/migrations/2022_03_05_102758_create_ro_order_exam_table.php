@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoPatientCompanyTable extends Migration
+class CreateRoOrderExamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateRoPatientCompanyTable extends Migration
      */
     public function up()
     {
-        Schema::create('ro_patient_company', function (Blueprint $table) {
-            $table->id('company_id');
-            $table->integer('patient_id');
-            $table->string('create_user', 150);
+        Schema::create('ro_order_exam', function (Blueprint $table) {
+            $table->id('order_id');
+            $table->string('exam_id',);
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateRoPatientCompanyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ro_patient_company');
+        Schema::dropIfExists('ro_order_exam');
     }
 }

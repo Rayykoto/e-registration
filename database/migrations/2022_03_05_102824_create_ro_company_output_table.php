@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoTitleTable extends Migration
+class CreateRoCompanyOutputTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRoTitleTable extends Migration
      */
     public function up()
     {
-        Schema::create('ro_title', function (Blueprint $table) {
-            $table->id('title_id');
-            $table->string('title_name', 50);
-            $table->string('display', 50);
-            $table->string('sex_id', 10);
+        Schema::create('ro_company_output', function (Blueprint $table) {
+            $table->id('patient_id');
+            $table->integer('output_id',);
+            $table->string('create_user');
+            $table->string('update_user');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateRoTitleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ro_title');
+        Schema::dropIfExists('ro_company_output');
     }
 }

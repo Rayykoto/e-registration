@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoUserTable extends Migration
+class CreateRoCompanyPaymentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateRoUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('ro_user', function (Blueprint $table) {
-            $table->id('user_id');
-            $table->string('user_name');
-            $table->string('user_pwd');
-            $table->string('user_lvl');
-            $table->string('user_email');
-            $table->string('sign_image');
+        Schema::create('ro_company_payment', function (Blueprint $table) {
+            $table->id('company_id');
+            $table->integer('paymen_id');
+            $table->string('paymen_token',);
+            $table->string('create_user',);
+            $table->string('update_user',);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateRoUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ro_user');
+        Schema::dropIfExists('ro_company_payment');
     }
 }

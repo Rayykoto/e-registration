@@ -36,7 +36,7 @@ Route::post('/register', 'App\Http\Controllers\RegisterController@store')->name(
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth:1', 'checkRole:1']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     // Route::group(['middleware' => ['auth:1', 'checkRole:1']], function () {
     Route::get('/myprofile', 'App\Http\Controllers\CustomerController@myprofile');
@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth:1', 'checkRole:1']], function () {
     Route::get('/product', 'App\Http\Controllers\CustomerController@product');
     // });
     //route sementara dashboard admin
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //route user *
     Route::resource('user', UserController::class)->except(['show']);
