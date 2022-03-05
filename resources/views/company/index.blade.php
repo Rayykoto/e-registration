@@ -33,12 +33,12 @@
                             <i class="ion ion-clipboard mr-1"></i>
                             Company
                         </h3>
-                         <a href="{{ route('company.create') }}" class="btn btn-success float-right">Tambah Data</a>
+                         <button onclick="addForm('{{ route('company.store') }}')" class="btn btn-success float-right">Tambah Data</button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
 
-                        <table class="table table-bordered table-striped" id="datatable">
+                        <table class="table table-striped table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -49,23 +49,7 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Wynacom</td>
-                                    <td>Wynahealth</td>
-                                    <td>Jl. Boulevard</td>
-                                    <td>Cabang JKT</td>
-                                    <td class="text-center">
-                                       <!-- <div class="btn-group btn-group-sm"> -->
-                                        <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        <!-- </div> -->
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
-
                     </div>
                 </div>
                 <!-- /.card -->
@@ -75,7 +59,52 @@
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 </section>
+
+@includeIf('company.form')
 @endsection
+
+@push('scripts')
+<script>
+    let table;
+
+$(function () {
+    table = $('.table').DataTable({
+        processing: true,
+        autoWidth: false,
+        {{-- ajax: {
+            url: '{{ route('company.data') }}',
+            } --}}
+        });
+
+        $('#modal-form').validator().on('submit', function (e) {
+            if (! e.preventDefault()) {
+                $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
+                    .done((response) => {
+                        $('#modal-form').modal('hide');
+                        table.ajax.reload();
+                    })
+                    .fail((errors) => {
+                        alert('Tidak dapat menyimpan data');
+                        return;
+                    });
+            }
+        });
+});
+
+    function addForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Tambah Company');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=company_name]').focus();
+        
+    }
+</script>
+@endpush
+
+
 
 
 

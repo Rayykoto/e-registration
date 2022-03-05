@@ -105,25 +105,28 @@
     <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
-    <script src="{{ asset('assets/') }}plugins/select2/js/select2.full.min.js"></script>
+    <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 
-    <script src="{{ asset('assets/') }}plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <script src="{{ asset('assets/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
 
-    <script src="{{ asset('assets/') }}plugins/moment/moment.min.js"></script>
-    <script src="{{ asset('assets/') }}plugins/inputmask/jquery.inputmask.min.js"></script>
+    <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
 
-    <script src="{{ asset('assets/') }}plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 
-    <script src="{{ asset('assets/') }}plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <script src="{{ asset('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 
-    <script src="{{ asset('assets/') }}plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
-    <script src="{{ asset('assets/') }}plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="{{ asset('assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
 
-    <script src="{{ asset('assets/') }}plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <script src="{{ asset('assets/plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
 
-    <script src="{{ asset('assets/') }}plugins/dropzone/min/dropzone.min.js"></script>
+    <script src="{{ asset('assets/plugins/dropzone/min/dropzone.min.js') }}"></script>
 
+    <script src="{{ asset('assets/validator.min.js') }} "></script>
+
+    @stack('scripts')
 </body>
 
 </html>

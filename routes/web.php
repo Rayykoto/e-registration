@@ -49,6 +49,9 @@ Route::group(['middleware' => ['auth']], function () {
     //route user *
     Route::resource('user', UserController::class)->except(['show']);
 
+    //route get company data datatables
+    Route::get('/company/data', [CompanyController::class, 'data'])->name('company.data');
+
     //route company *
     Route::resource('company', CompanyController::class)->except(['show']);
 
