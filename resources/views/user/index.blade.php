@@ -33,7 +33,7 @@
                             <i class="ion ion-clipboard mr-1"></i>
                             User
                         </h3>
-                         <a href="{{ route('user.create') }}" class="btn btn-success float-right">Tambah Data</a>
+                        <a href="#" class="btn btn-success float-right">Tambah Data</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -55,7 +55,7 @@
                                     <td>Wynahealth</td>
                                     <td>admin</td>
                                     <td class="text-center">
-                                       <!-- <div class="btn-group btn-group-sm"> -->
+                                        <!-- <div class="btn-group btn-group-sm"> -->
                                         <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
                                         <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                         <!-- </div> -->
@@ -74,6 +74,3 @@
     </div><!-- /.container-fluid -->
 </section>
 @endsection
-
-
-

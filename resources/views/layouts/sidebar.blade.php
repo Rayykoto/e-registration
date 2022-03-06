@@ -22,7 +22,7 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
                 <li class="nav-item">
-                    <a href="{{ route('user.index') }}" class="nav-link">
+                    <a href="{{ route('user') }}" class="nav-link">
                         <i class="fas fa-users nav-icon"></i>
                         <p>User</p>
                     </a>
