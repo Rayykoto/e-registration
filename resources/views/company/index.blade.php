@@ -71,9 +71,17 @@ $(function () {
     table = $('.table').DataTable({
         processing: true,
         autoWidth: false,
-        {{-- ajax: {
+         ajax: {
             url: '{{ route('company.data') }}',
-            } --}}
+            },
+            columns: [
+                {data: 'DT_RowIndex', searchable: false, sortable: false},
+                {data: 'company_name'},
+                {data: 'company_city'},
+                {data: 'company_branch'},
+                {data: 'company_address'},
+                {data: 'aksi', searchable: false, sortable: false},
+            ]
         });
 
         $('#modal-form').validator().on('submit', function (e) {
@@ -99,7 +107,43 @@ $(function () {
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=company_name]').focus();
-        
+    }
+
+    function editForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Edit Company');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('put');
+        $('#modal-form [name=company_name]').focus();
+
+        $.get(url)
+            .done((response) => {
+                $('#modal-form [name="company_name"]').val(response.company_name);
+                $('#modal-form [name="company_city"]').val(response.company_city);
+                $('#modal-form [name="company_address"]').val(response.company_address);
+            })
+            .fail((errors) => {
+                alert('Tidak Dapat Menampilkan Data!');
+                return;
+            });
+    }
+
+    function deleteData(url) {
+        if (confirm('Yakin ingin menghapus data terpilih?')) {
+            $.post(url, {
+                    '_token': $('[name=csrf-token]').attr('content'),
+                    '_method': 'delete'
+                })
+                .done((response) => {
+                    table.ajax.reload();
+                })
+                .fail((errors) => {
+                    alert('Tidak dapat menghapus data');
+                    return;
+                });
+        }
     }
 </script>
 @endpush

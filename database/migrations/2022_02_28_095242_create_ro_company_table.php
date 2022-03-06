@@ -16,7 +16,7 @@ class CreateRoCompanyTable extends Migration
         Schema::create('ro_company', function (Blueprint $table) {
             $table->id('company_id');
             $table->string('company_name', 50);
-            $table->date('company_address');
+            $table->string('company_address');
             $table->string('company_city', 6);
             $table->timestamps();
         });

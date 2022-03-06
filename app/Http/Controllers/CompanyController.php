@@ -18,6 +18,32 @@ class CompanyController extends Controller
     }
 
     /**
+     * Display a Data
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function data()
+    {
+        $company = Company::orderBy('company_id', 'desc')->get();
+
+        return datatables()
+        ->of($company)
+        ->addIndexColumn()
+        ->addColumn('aksi', function ($company) {
+            return '
+            <div class="btn-group">
+                <button onclick="editForm(`'. route('company.update', $company->company_id) .'`)" class="btn btn-xs btn-info"><i class="fa fa-cog"></i></button>
+                <button onclick="deleteData(`'. route('company.destroy', $company->company_id) .'`)" class="btn btn-xs btn-danger   "><i class="fa fa-trash"></i></button>
+            </div>
+            ';
+        })
+        ->rawColumns(['aksi'])
+        ->make(true);
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -78,11 +104,7 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $company = Company::find($id);
-        $company->nama_company = $request->nama_company;
-        $company->company_address = $request->company_address;
-        $company->company_city = $request->company_city;
-        $company->update();
+        $member = Company::find($id)->update($request->all());
 
         return response()->json('Data berhasil disimpan', 200);
     }

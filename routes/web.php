@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/company/data', [CompanyController::class, 'data'])->name('company.data');
 
     //route company *
-    Route::resource('company', CompanyController::class)->except(['show']);
+    Route::resource('company', CompanyController::class);
 
     //route checkup *
     Route::resource('checkup', CheckupController::class)->except(['show']);
