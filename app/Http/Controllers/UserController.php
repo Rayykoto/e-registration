@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +14,26 @@ class UserController extends Controller
      */
     public function index()
     {
-    return view('user.index');
+        return view('user.index');
+    }
+
+    public function data()
+    {
+        $user = User::orderBy('id', 'desc')->get();
+
+        return datatables()
+            ->of($user)
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($user) {
+                return '
+            <div class="btn-group">
+                <button onclick="editForm(`' . route('company.update', $user->id) . '`)" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                <button onclick="deleteData(`' . route('company.destroy', $user->id) . '`)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            </div>
+            ';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 
     /**
@@ -34,7 +54,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
