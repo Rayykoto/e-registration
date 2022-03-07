@@ -38,7 +38,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
 
-                        <table class="table table-striped table-bordered" width="100%" cellspacing="0">
+                        <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -47,6 +47,7 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -68,7 +69,7 @@ $(function () {
         processing: true,
         autoWidth: false,
          ajax: {
-            url: '{{ route('datauser') }}',
+            url: '{{ route('user.data') }}',
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
