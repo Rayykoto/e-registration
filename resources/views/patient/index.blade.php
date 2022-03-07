@@ -15,9 +15,9 @@
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">Patient</li>
                 </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.content-header -->
 
@@ -33,7 +33,7 @@
                             <i class="ion ion-clipboard mr-1"></i>
                             Patient
                         </h3>
-                         <a href="{{ route('patient.create') }}" class="btn btn-success float-right">Tambah Data</a>
+                         <button onclick="addForm('{{ route('patient.store') }}')" class="btn btn-success float-right">Tambah Data</button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -48,22 +48,7 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Wynacom</td>
-                                    <td>Wynahealth@gmail.com</td>
-                                    <td>001</td>
-                                    <td class="text-center">
-                                       <!-- <div class="btn-group btn-group-sm"> -->
-                                        <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        <!-- </div> -->
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
-
                     </div>
                 </div>
                 <!-- /.card -->
@@ -71,9 +56,97 @@
             <!-- /.Left col -->
         </div>
         <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+    </div>
 </section>
+
+@includeIf('patient.form')
 @endsection
+
+@push('scripts')
+<script>
+    let table;
+
+$(function () {
+    table = $('.table').DataTable({
+        processing: true,
+        autoWidth: false,
+         ajax: {
+            url: '{{ route('patient.data') }}',
+            },
+            columns: [
+                {data: 'DT_RowIndex', searchable: false, sortable: false},
+                {data: 'patient_name'},
+                {data: 'email'},
+                {data: 'nik'},
+                {data: 'aksi', searchable: false, sortable: false},
+            ]
+        });
+
+        $('#modal-form').validator().on('submit', function (e) {
+            if (! e.preventDefault()) {
+                $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
+                    .done((response) => {
+                        $('#modal-form').modal('hide');
+                        table.ajax.reload();
+                    })
+                    .fail((errors) => {
+                        alert('Tidak dapat menyimpan data');
+                        return;
+                    });
+            }
+        });
+});
+
+    function addForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Tambah Patient');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=patient_name]').focus();
+    }
+
+    function editForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Edit Patient');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('put');
+        $('#modal-form [name=patient_name]').focus();
+
+        $.get(url)
+            .done((response) => {
+                $('#modal-form [name="patient_name"]').val(response.checkup_name);
+                $('#modal-form [name="email"]').val(response.checkup_city);
+                $('#modal-form [name="nik"]').val(response.checkup_address);
+            })
+            .fail((errors) => {
+                alert('Tidak Dapat Menampilkan Data!');
+                return;
+            });
+    }
+
+    function deleteData(url) {
+        if (confirm('Yakin ingin menghapus data terpilih?')) {
+            $.post(url, {
+                    '_token': $('[name=csrf-token]').attr('content'),
+                    '_method': 'delete'
+                })
+                .done((response) => {
+                    table.ajax.reload();
+                })
+                .fail((errors) => {
+                    alert('Tidak dapat menghapus data');
+                    return;
+                });
+        }
+    }
+</script>
+@endpush
+
+
 
 
 

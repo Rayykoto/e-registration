@@ -33,37 +33,22 @@
                             <i class="ion ion-clipboard mr-1"></i>
                             Checkup
                         </h3>
-                         <a href="{{ route('checkup.create') }}" class="btn btn-success float-right">Tambah Data</a>
+                         <button onclick="addForm('{{ route('checkup.store') }}')" class="btn btn-success float-right">Tambah Data</button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
 
-                        <table class="table table-bordered table-striped" id="datatable">
+                        <table class="table table-striped table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Checkup Name</th>
-                                    <th>Checkup Label</th>
-                                    <th>Checkup Price</th>
+                                    <th>Label</th>
+                                    <th>Price</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Wynacom</td>
-                                    <td>Wynahealth</td>
-                                    <td>2 Milyar</td>
-                                    <td class="text-center">
-                                       <!-- <div class="btn-group btn-group-sm"> -->
-                                        <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        <!-- </div> -->
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
-
                     </div>
                 </div>
                 <!-- /.card -->
@@ -73,7 +58,95 @@
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 </section>
+
+@includeIf('checkup.form')
 @endsection
+
+@push('scripts')
+<script>
+    let table;
+
+$(function () {
+    table = $('.table').DataTable({
+        processing: true,
+        autoWidth: false,
+         ajax: {
+            url: '{{ route('checkup.data') }}',
+            },
+            columns: [
+                {data: 'DT_RowIndex', searchable: false, sortable: false},
+                {data: 'exam_name'},
+                {data: 'label'},
+                {data: 'price'},
+                {data: 'aksi', searchable: false, sortable: false},
+            ]
+        });
+
+        $('#modal-form').validator().on('submit', function (e) {
+            if (! e.preventDefault()) {
+                $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
+                    .done((response) => {
+                        $('#modal-form').modal('hide');
+                        table.ajax.reload();
+                    })
+                    .fail((errors) => {
+                        alert('Tidak dapat menyimpan data');
+                        return;
+                    });
+            }
+        });
+});
+
+    function addForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Tambah checkup');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=exam_name]').focus();
+    }
+
+    function editForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Edit checkup');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('put');
+        $('#modal-form [name=exam_name]').focus();
+
+        $.get(url)
+            .done((response) => {
+                $('#modal-form [name="exam_name"]').val(response.checkup_name);
+                $('#modal-form [name="label"]').val(response.checkup_city);
+                $('#modal-form [name="price"]').val(response.checkup_address);
+            })
+            .fail((errors) => {
+                alert('Tidak Dapat Menampilkan Data!');
+                return;
+            });
+    }
+
+    function deleteData(url) {
+        if (confirm('Yakin ingin menghapus data terpilih?')) {
+            $.post(url, {
+                    '_token': $('[name=csrf-token]').attr('content'),
+                    '_method': 'delete'
+                })
+                .done((response) => {
+                    table.ajax.reload();
+                })
+                .fail((errors) => {
+                    alert('Tidak dapat menghapus data');
+                    return;
+                });
+        }
+    }
+</script>
+@endpush
+
+
 
 
 

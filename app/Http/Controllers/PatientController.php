@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -17,13 +18,39 @@ class PatientController extends Controller
     }
 
     /**
+     * Display a Data
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function data()
+    {
+        $patient = Patient::orderBy('patient_id', 'desc')->get();
+
+        return datatables()
+        ->of($patient)
+        ->addIndexColumn()
+        ->addColumn('aksi', function ($patient) {
+            return '
+            <div class="btn-group">
+                <button onclick="editForm(`'. route('patient.update', $patient->patient_id) .'`)" class="btn btn-xs btn-info"><i class="fa fa-cog"></i></button>
+                <button onclick="deleteData(`'. route('patient.destroy', $patient->patient_id  ) .'`)" class="btn btn-xs btn-danger   "><i class="fa fa-trash"></i></button>
+            </div>
+            ';
+        })
+        ->rawColumns(['aksi'])
+        ->make(true);
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('patient.create');
+        //
     }
 
     /**
@@ -34,7 +61,14 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $patient = new Patient();
+        $patient->patient_name = $request->patient_name;
+        $patient->email = $request->email;
+        $patient->nik = $request->nik;
+        
+        $patient->save();
+
+        return response()->json('Data Berhasil Disimpan', 200);
     }
 
     /**
@@ -45,7 +79,9 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        //
+        $patient = Patient::find($id);
+
+        return response()->json($patient);
     }
 
     /**
@@ -68,7 +104,9 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $patient = Patient::find($id)->update($request->all());
+
+        return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
@@ -79,6 +117,9 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $patient = Patient::find($id);
+        $patient->delete();
+
+        return response(null, 204);
     }
 }

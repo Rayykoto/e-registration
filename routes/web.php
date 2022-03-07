@@ -53,19 +53,31 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/company/data', [CompanyController::class, 'data'])->name('company.data');
 
     //route company *
-    Route::resource('company', CompanyController::class);
+    Route::resource('company', CompanyController::class)->except(['create','edit']);
+
+    //route get checkup data datatables
+    Route::get('/checkup/data', [CheckupController::class, 'data'])->name('checkup.data');
 
     //route checkup *
-    Route::resource('checkup', CheckupController::class)->except(['show']);
+    Route::resource('checkup', CheckupController::class)->except(['create','edit']);
+    
+    //route get patient data datatables
+    Route::get('/patient/data', [PatientController::class, 'data'])->name('patient.data');
 
     //route patient *
-    Route::resource('patient', PatientController::class)->except(['show']);
+    Route::resource('patient', PatientController::class)->except(['create', 'edit']);
+
+    //route get payment data datatables
+    Route::get('/payment/data', [PaymentController::class, 'data'])->name('payment.data');
 
     //route payment *
-    Route::resource('payment', PaymentController::class)->except(['show']);
+    Route::resource('payment', PaymentController::class)->except(['create', 'edit']);
+
+    //route get output data datatables
+    Route::get('/output/data', [OutputController::class, 'data'])->name('output.data');
 
     //route Output *
-    Route::resource('output', OutputController::class)->except(['show']);
+    Route::resource('output', OutputController::class)->except(['create', 'edit']);
 
     //route SetPatient *
     Route::resource('setpatient', SetpatientController::class)->except(['show']);

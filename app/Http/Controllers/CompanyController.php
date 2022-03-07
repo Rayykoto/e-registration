@@ -92,7 +92,7 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        return view('company.edit');
+        //
     }
 
     /**
@@ -104,7 +104,7 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $member = Company::find($id)->update($request->all());
+        $company = Company::find($id)->update($request->all());
 
         return response()->json('Data berhasil disimpan', 200);
     }

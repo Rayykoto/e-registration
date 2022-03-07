@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Output;
 use Illuminate\Http\Request;
 
 class OutputController extends Controller
@@ -17,13 +18,39 @@ class OutputController extends Controller
     }
 
     /**
+     * Display a Data
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function data()
+    {
+        $output = Output::orderBy('output_id', 'desc')->get();
+
+        return datatables()
+        ->of($output)
+        ->addIndexColumn()
+        ->addColumn('aksi', function ($output) {
+            return '
+            <div class="btn-group">
+                <button onclick="editForm(`'. route('output.update', $output->output_id) .'`)" class="btn btn-xs btn-info"><i class="fa fa-cog"></i></button>
+                <button onclick="deleteData(`'. route('output.destroy', $output->output_id  ) .'`)" class="btn btn-xs btn-danger   "><i class="fa fa-trash"></i></button>
+            </div>
+            ';
+        })
+        ->rawColumns(['aksi'])
+        ->make(true);
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('output.create');
+        //
     }
 
     /**
@@ -34,7 +61,13 @@ class OutputController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $output = new output();
+        $output->output_name = $request->output_name;
+        $output->output_status = $request->output_status;
+        
+        $output->save();
+
+        return response()->json('Data Berhasil Disimpan', 200);
     }
 
     /**
@@ -45,7 +78,9 @@ class OutputController extends Controller
      */
     public function show($id)
     {
-        //
+        $output = Output::find($id);
+
+        return response()->json($output);
     }
 
     /**
@@ -68,7 +103,9 @@ class OutputController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $output = Output::find($id)->update($request->all());
+
+        return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
@@ -79,6 +116,9 @@ class OutputController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $output = Output::find($id);
+        $output->delete();
+
+        return response(null, 204);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Checkup;
 use Illuminate\Http\Request;
 
 class CheckupController extends Controller
@@ -17,13 +18,39 @@ class CheckupController extends Controller
     }
 
     /**
+     * Display a Data
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function data()
+    {
+        $checkup = Checkup::orderBy('exam_id', 'desc')->get();
+
+        return datatables()
+        ->of($checkup)
+        ->addIndexColumn()
+        ->addColumn('aksi', function ($checkup) {
+            return '
+            <div class="btn-group">
+                <button onclick="editForm(`'. route('checkup.update', $checkup->exam_id) .'`)" class="btn btn-xs btn-info"><i class="fa fa-cog"></i></button>
+                <button onclick="deleteData(`'. route('checkup.destroy', $checkup->exam_id  ) .'`)" class="btn btn-xs btn-danger   "><i class="fa fa-trash"></i></button>
+            </div>
+            ';
+        })
+        ->rawColumns(['aksi'])
+        ->make(true);
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('checkup.create');
+        //
     }
 
     /**
@@ -34,7 +61,14 @@ class CheckupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $checkup = new Checkup();
+        $checkup->exam_name = $request->exam_name;
+        $checkup->label = $request->label;
+        $checkup->price = $request->price;
+        
+        $checkup->save();
+
+        return response()->json('Data Berhasil Disimpan', 200);
     }
 
     /**
@@ -45,7 +79,9 @@ class CheckupController extends Controller
      */
     public function show($id)
     {
-        //
+        $checkup = Checkup::find($id);
+
+        return response()->json($checkup);
     }
 
     /**
@@ -68,7 +104,9 @@ class CheckupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $checkup = Checkup::find($id)->update($request->all());
+
+        return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
@@ -79,6 +117,9 @@ class CheckupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $checkup = Checkup::find($id);
+        $checkup->delete();
+
+        return response(null, 204);
     }
 }

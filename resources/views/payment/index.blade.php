@@ -33,7 +33,7 @@
                             <i class="ion ion-clipboard mr-1"></i>
                             Patient
                         </h3>
-                         <a href="{{ route('payment.create') }}" class="btn btn-success float-right">Tambah Data</a>
+                         <button onclick="addForm('{{ route('payment.store') }}')" class="btn btn-success float-right">Tambah Data</button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -43,25 +43,11 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Payment Name</th>
-                                    <th>Payment Token</th>
+                                    <th>Payment Logo</th>
                                     <th>Payment Status</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Bank Transfer</td>
-                                    <td>Token</td>
-                                    <td>Sudah Bayar</td>
-                                    <td class="text-center">
-                                       <!-- <div class="btn-group btn-group-sm"> -->
-                                        <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        <!-- </div> -->
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
 
                     </div>
@@ -73,7 +59,94 @@
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 </section>
+
+@includeIf('payment.form')
 @endsection
+
+@push('scripts')
+<script>
+    let table;
+
+$(function () {
+    table = $('.table').DataTable({
+        processing: true,
+        autoWidth: false,
+         ajax: {
+            url: '{{ route('payment.data') }}',
+            },
+            columns: [
+                {data: 'DT_RowIndex', searchable: false, sortable: false},
+                {data: 'payment_name'},
+                {data: 'payment_logo'},
+                {data: 'payment_status'},
+                {data: 'aksi', searchable: false, sortable: false},
+            ]
+        });
+
+        $('#modal-form').validator().on('submit', function (e) {
+            if (! e.preventDefault()) {
+                $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
+                    .done((response) => {
+                        $('#modal-form').modal('hide');
+                        table.ajax.reload();
+                    })
+                    .fail((errors) => {
+                        alert('Tidak dapat menyimpan data');
+                        return;
+                    });
+            }
+        });
+});
+
+    function addForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Tambah Payment');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('post');
+        $('#modal-form [name=payment_name]').focus();
+    }
+
+    function editForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Edit Payment');
+
+        $('#modal-form form')[0].reset();
+        $('#modal-form form').attr('action', url);
+        $('#modal-form [name=_method]').val('put');
+        $('#modal-form [name=payment_name]').focus();
+
+        $.get(url)
+            .done((response) => {
+                $('#modal-form [name="payment_name"]').val(response.payment_name);
+                $('#modal-form [name="payment_logo"]').val(response.payment_logo);
+                $('#modal-form [name="payment_status"]').val(response.payment_status);
+            })
+            .fail((errors) => {
+                alert('Tidak Dapat Menampilkan Data!');
+                return;
+            });
+    }
+
+    function deleteData(url) {
+        if (confirm('Yakin ingin menghapus data terpilih?')) {
+            $.post(url, {
+                    '_token': $('[name=csrf-token]').attr('content'),
+                    '_method': 'delete'
+                })
+                .done((response) => {
+                    table.ajax.reload();
+                })
+                .fail((errors) => {
+                    alert('Tidak dapat menghapus data');
+                    return;
+                });
+        }
+    }
+</script>
+@endpush
+
 
 
 

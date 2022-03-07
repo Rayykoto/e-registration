@@ -42,7 +42,7 @@
           <div class="info-box-content">
             <span class="info-box-text">TOTAL COMPANY</span>
             <span class="info-box-number">
-              15
+              {{ $company }}
               <small>Company</small>
             </span>
           </div>
