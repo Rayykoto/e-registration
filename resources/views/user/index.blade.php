@@ -38,32 +38,16 @@
                     <!-- /.card-header -->
                     <div class="card-body">
 
-                        <table class="table table-bordered table-striped" id="datatable">
+                        <table class="table table-striped table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>User Id / Email</th>
                                     <th>Name</th>
-                                    <th>Level</th>
+                                    <th>Email</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Wynacom</td>
-                                    <td>Wynahealth</td>
-                                    <td>admin</td>
-                                    <td class="text-center">
-                                        <!-- <div class="btn-group btn-group-sm"> -->
-                                        <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        <!-- </div> -->
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
-
                     </div>
                 </div>
                 <!-- /.card -->
@@ -74,3 +58,25 @@
     </div><!-- /.container-fluid -->
 </section>
 @endsection
+
+@push('scripts')
+<script>
+    let table;
+
+$(function () {
+    table = $('.table').DataTable({
+        processing: true,
+        autoWidth: false,
+         ajax: {
+            url: '{{ route('datauser') }}',
+            },
+            columns: [
+                {data: 'DT_RowIndex', searchable: false, sortable: false},
+                {data: 'name'},
+                {data: 'email'},
+                {data: 'aksi', searchable: false, sortable: false},
+            ]
+        });
+});
+</script>
+@endpush

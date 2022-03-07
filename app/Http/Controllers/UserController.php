@@ -19,8 +19,21 @@ class UserController extends Controller
 
     public function data()
     {
-        $user = User::all();
-        return response()->json($user);
+        $user = User::orderBy('id', 'desc')->get();
+
+        return datatables()
+            ->of($user)
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($user) {
+                return '
+            <div class="btn-group">
+                <button onclick="editForm(`' . route('company.update', $user->id) . '`)" class="btn btn-info"><i class="fas fa-edit"></i></button>
+                <button onclick="deleteData(`' . route('company.destroy', $user->id) . '`)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            </div>
+            ';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 
     /**

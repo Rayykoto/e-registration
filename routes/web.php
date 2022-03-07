@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('user', [\App\Http\Controllers\UserController::class, 'index'])->name('user');
 
     //api datatable user
-    Route::get('datauser', [\App\Http\Controllers\UserController::class, 'data'])->name('datauser');
+    Route::get('datauser', [\App\Http\Controllers\UserController::class, 'data'])->name('user.data');
 
     //route get company data datatables
     Route::get('/company/data', [CompanyController::class, 'data'])->name('company.data');
