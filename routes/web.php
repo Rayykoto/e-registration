@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/login');
+    return redirect()->route('/login');
 });
 
 //route sementara customer
@@ -56,14 +56,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/company/data', [CompanyController::class, 'data'])->name('company.data');
 
     //route company *
-    Route::resource('company', CompanyController::class)->except(['create','edit']);
+    Route::resource('company', CompanyController::class)->except(['create', 'edit']);
 
     //route get checkup data datatables
     Route::get('/checkup/data', [CheckupController::class, 'data'])->name('checkup.data');
 
     //route checkup *
-    Route::resource('checkup', CheckupController::class)->except(['create','edit']);
-    
+    Route::resource('checkup', CheckupController::class)->except(['create', 'edit']);
+
     //route get patient data datatables
     Route::get('/patient/data', [PatientController::class, 'data'])->name('patient.data');
 

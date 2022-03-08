@@ -1,6 +1,16 @@
 @extends('layouts.master')
 
 @section('content')
+@if ($login = Session::get('success'))
+<script>
+  swal({
+      title: "Berhasil!", 
+      text: "Berhasil Login!!", 
+      type: "success",
+      button: "Ok",
+  });
+</script>
+@endif
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <div class="container-fluid">
