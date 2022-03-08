@@ -19,6 +19,7 @@ class HomeController extends Controller
         $user = User::where(['user_lvl' => 'user'])->count();
         $company = Company::count();
         $patient = Patient::count();
+        // $check = Company::sum('company_city');
 
         return view('admin.dashboard', compact('user', 'company', 'patient'));
     }

@@ -49,7 +49,7 @@ class LoginController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             return redirect($this->redirectTo)->with('success', 'Success Message');
         } else {
-            return redirect('/login')->with('error', 'Password Dan Email Anda Salah');
+            return redirect('/login')->with('error', 'Email Dan Password Anda Salah');
         }
     }
 }
