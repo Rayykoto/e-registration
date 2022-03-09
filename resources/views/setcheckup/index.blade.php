@@ -33,7 +33,7 @@
                             <i class="ion ion-clipboard mr-1"></i>
                             Setting Checkup
                         </h3>
-                         <a href="{{ route('setcheckup.create') }}" class="btn btn-success float-right">Tambah Data</a>
+                         <button onclick="addForm('{{ route('setcheckup.create') }}')" class="btn btn-success float-right">Tambah Data</button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -71,7 +71,27 @@
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 </section>
+
+@includeIf('setcheckup.form')
 @endsection
+
+@push('scripts')
+<script>
+    let table;
+
+$(function () {
+    table = $('.table').DataTable({
+        processing: true,
+        autoWidth: false,
+    });
+});
+
+    function addForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Tambah Setting Checkup');
+    }
+</script>
+@endpush
 
 
 

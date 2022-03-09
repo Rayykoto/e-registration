@@ -33,7 +33,7 @@
                             <i class="ion ion-clipboard mr-1"></i>
                             Setting Payment
                         </h3>
-                         <a href="{{ route('setpayment.create') }}" class="btn btn-success float-right">Tambah Data</a>
+                         <button onclick="addForm('{{ route('setpayment.create') }}')" class="btn btn-success float-right">Tambah Data</button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -47,19 +47,6 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Wynacom</td>
-                                    <td>Wynahealth</td>
-                                    <td class="text-center">
-                                       <!-- <div class="btn-group btn-group-sm"> -->
-                                        <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        <!-- </div> -->
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
 
                     </div>
@@ -71,7 +58,27 @@
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 </section>
+
+@includeIf('setpayment.form')
 @endsection
+
+@push('scripts')
+<script>
+    let table;
+
+$(function () {
+    table = $('.table').DataTable({
+        processing: true,
+        autoWidth: false,
+    });
+});
+
+    function addForm(url) {
+        $('#modal-form').modal('show');
+        $('#modal-form .modal-title').text('Tambah Setting Payment');
+    }
+</script>
+@endpush
 
 
 
