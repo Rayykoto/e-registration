@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoCompantExamTable extends Migration
+class CreateRoCompanyExamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRoCompantExamTable extends Migration
      */
     public function up()
     {
-        Schema::create('ro_compant_exam', function (Blueprint $table) {
+        Schema::create('ro_company_exam', function (Blueprint $table) {
             $table->id();
             $table->integer('company_id',);
             $table->integer('exam_id',);
@@ -30,6 +30,6 @@ class CreateRoCompantExamTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ro_compant_exam');
+        Schema::dropIfExists('ro_company_exam');
     }
 }
