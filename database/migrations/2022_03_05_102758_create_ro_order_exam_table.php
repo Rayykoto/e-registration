@@ -14,7 +14,8 @@ class CreateRoOrderExamTable extends Migration
     public function up()
     {
         Schema::create('ro_order_exam', function (Blueprint $table) {
-            $table->id('order_id');
+            $table->id();
+            $table->integer('order_id');
             $table->string('exam_id',);
             $table->timestamps();
         });

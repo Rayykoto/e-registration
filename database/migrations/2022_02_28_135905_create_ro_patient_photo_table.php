@@ -16,7 +16,7 @@ class CreateRoPatientPhotoTable extends Migration
         Schema::create('ro_patient_photo', function (Blueprint $table) {
             $table->id('photo_id');
             $table->integer('patient_id');
-            $table->string('photo', 150);
+            $table->string('photo');
             $table->timestamps();
         });
     }

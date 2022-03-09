@@ -71,6 +71,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'user_lvl' => 'user',
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('register', 'Success Message');
     }
 }

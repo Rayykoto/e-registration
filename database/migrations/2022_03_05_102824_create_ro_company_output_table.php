@@ -14,7 +14,8 @@ class CreateRoCompanyOutputTable extends Migration
     public function up()
     {
         Schema::create('ro_company_output', function (Blueprint $table) {
-            $table->id('patient_id');
+            $table->id();
+            $table->integer('company_id',);
             $table->integer('output_id',);
             $table->string('create_user');
             $table->string('update_user');

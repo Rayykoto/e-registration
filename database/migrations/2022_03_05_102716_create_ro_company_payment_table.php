@@ -14,7 +14,8 @@ class CreateRoCompanyPaymentTable extends Migration
     public function up()
     {
         Schema::create('ro_company_payment', function (Blueprint $table) {
-            $table->id('company_id');
+            $table->id();
+            $table->integer('company_id');
             $table->integer('paymen_id');
             $table->string('paymen_token',);
             $table->string('create_user',);

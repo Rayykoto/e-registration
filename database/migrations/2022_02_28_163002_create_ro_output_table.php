@@ -16,7 +16,7 @@ class CreateRoOutputTable extends Migration
         Schema::create('ro_output', function (Blueprint $table) {
             $table->id('output_id');
             $table->string('output_name', 50);
-            $table->string('output_status', 1);
+            $table->string('output_status', 50);
             $table->timestamps();
         });
     }

@@ -18,6 +18,8 @@ class CreateRoCompanyTable extends Migration
             $table->string('company_name', 50);
             $table->string('company_address');
             $table->string('company_city', 6);
+            $table->string('company_code');
+            $table->string('company_branch');
             $table->timestamps();
         });
     }
