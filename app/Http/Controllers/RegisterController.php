@@ -20,6 +20,7 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'user_lvl' => '1',
+            'status' => 'active',
         ]);
         return redirect('register')->with('success', 'Data berhasil Disimpan');
     }
