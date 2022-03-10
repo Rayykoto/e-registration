@@ -72,6 +72,5 @@ class RegisterController extends Controller
             'user_lvl' => 'user',
             'status' => 'active',
         ]);
-        return redirect()->back()->with('register', 'Success Message');
     }
 }

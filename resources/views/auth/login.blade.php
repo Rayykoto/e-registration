@@ -80,6 +80,11 @@
                                     Remember Me
                                 </label>
                             </div>
+                            @if (Route::has('password.request'))
+                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                {{ __('Forgot Your Password?') }}
+                            </a>
+                            @endif
                         </div>
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary btn-block">Sign In</button>

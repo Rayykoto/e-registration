@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('/login');
+    return redirect()->route('login');
 });
 
 //route sementara customer
@@ -34,9 +34,11 @@ Route::get('/register', 'App\Http\Controllers\RegisterController@index');
 Route::post('/register', 'App\Http\Controllers\RegisterController@store')->name('register.store');
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => ['auth']], function () {
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('');
+
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     // Route::group(['middleware' => ['auth:1', 'checkRole:1']], function () {
     Route::get('/myprofile', 'App\Http\Controllers\CustomerController@myprofile');
