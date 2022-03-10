@@ -42,6 +42,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Company Code</th>
                                     <th>Company Name</th>
                                     <th>Company City</th>
                                     <th>Company Branch</th>
@@ -76,6 +77,7 @@ $(function () {
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
+                {data: 'company_code'},
                 {data: 'company_name'},
                 {data: 'company_city'},
                 {data: 'company_branch'},
@@ -120,8 +122,10 @@ $(function () {
 
         $.get(url)
             .done((response) => {
+                $('#modal-form [name="company_code"]').val(response.company_code);
                 $('#modal-form [name="company_name"]').val(response.company_name);
                 $('#modal-form [name="company_city"]').val(response.company_city);
+                $('#modal-form [name="company_branch"]').val(response.company_branch);
                 $('#modal-form [name="company_address"]').val(response.company_address);
             })
             .fail((errors) => {

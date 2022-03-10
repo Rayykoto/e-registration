@@ -65,6 +65,8 @@ class CompanyController extends Controller
         $company->company_name = $request->company_name;
         $company->company_address = $request->company_address;
         $company->company_city = $request->company_city;
+        $company->company_code = $request->company_code;
+        $company->company_branch = $request->company_branch;
         
         $company->save();
 

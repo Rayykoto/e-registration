@@ -118,9 +118,9 @@ $(function () {
 
         $.get(url)
             .done((response) => {
-                $('#modal-form [name="exam_name"]').val(response.checkup_name);
-                $('#modal-form [name="label"]').val(response.checkup_city);
-                $('#modal-form [name="price"]').val(response.checkup_address);
+                $('#modal-form [name="exam_name"]').val(response.exam_name);
+                $('#modal-form [name="label"]').val(response.label);
+                $('#modal-form [name="price"]').val(response.price);
             })
             .fail((errors) => {
                 alert('Tidak Dapat Menampilkan Data!');
