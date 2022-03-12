@@ -44,7 +44,7 @@
           <label for="position">Position</label>
           <input type="text" name="position" id="position" />
         </div>
-        <div class="">
+        <div class="btn-1">
           <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
         </div>
       </div>

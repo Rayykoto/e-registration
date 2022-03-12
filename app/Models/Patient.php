@@ -10,5 +10,6 @@ class Patient extends Model
     use HasFactory;
 
     protected $table = 'ro_patient';
+    protected $primaryKey = 'patient_id';
     protected $guarded = [];
 }

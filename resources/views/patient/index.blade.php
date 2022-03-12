@@ -60,6 +60,7 @@
 </section>
 
 @includeIf('patient.form')
+@includeIf('patient.detail')
 @endsection
 
 @push('scripts')
@@ -107,6 +108,11 @@ $(function () {
         $('#modal-form [name=patient_name]').focus();
     }
 
+    function showDetail(url) {
+        $('#modal-data').modal('show');
+        $('#modal-data .modal-title').text('Detail Data Patient');
+    }
+
     function editForm(url) {
         $('#modal-form').modal('show');
         $('#modal-form .modal-title').text('Edit Patient');
@@ -118,9 +124,9 @@ $(function () {
 
         $.get(url)
             .done((response) => {
-                $('#modal-form [name="patient_name"]').val(response.checkup_name);
-                $('#modal-form [name="email"]').val(response.checkup_city);
-                $('#modal-form [name="nik"]').val(response.checkup_address);
+                $('#modal-form [name="patient_name"]').val(response.patient_name);
+                $('#modal-form [name="email"]').val(response.email);
+                $('#modal-form [name="nik"]').val(response.nik);
             })
             .fail((errors) => {
                 alert('Tidak Dapat Menampilkan Data!');

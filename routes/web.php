@@ -69,6 +69,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     //route get patient data datatables
     Route::get('/patient/data', [PatientController::class, 'data'])->name('patient.data');
 
+    //route qrcode patient
+    Route::get('/patient/qrcode', [PatientController::class, 'qrcode'])->name('patient.qrcode');
+
     //route patient *
     Route::resource('patient', PatientController::class)->except(['create', 'edit']);
 

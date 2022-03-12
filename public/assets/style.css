@@ -25,6 +25,7 @@ input {
 
 .ml-auto {
   margin-left: auto;
+  /* background-color:blue */
 }
 
 .text-center {
@@ -90,7 +91,7 @@ input {
 .form {
   width: clamp(500px, 30%, 430px);
   margin: 0 auto;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 0.35rem;
   padding: 1.5rem;
 }
@@ -127,7 +128,7 @@ input {
   gap: 1.5rem;
 }
 
-.btn {
+.btn-top {
   padding: 0.75rem;
   display: block;
   text-decoration: none;

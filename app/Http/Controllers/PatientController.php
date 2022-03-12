@@ -33,8 +33,10 @@ class PatientController extends Controller
         ->addColumn('aksi', function ($patient) {
             return '
             <div class="btn-group">
+                <button onclick="showDetail(`'. route('patient.show', $patient->patient_id) .'`)" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></button>
                 <button onclick="editForm(`'. route('patient.update', $patient->patient_id) .'`)" class="btn btn-xs btn-info"><i class="fa fa-cog"></i></button>
                 <button onclick="deleteData(`'. route('patient.destroy', $patient->patient_id  ) .'`)" class="btn btn-xs btn-danger   "><i class="fa fa-trash"></i></button>
+                <button onclick="qrcode(`'. route('patient.qrcode', $patient->patient_id) .'`)" class="btn btn-xs btn-info"><i class="fa fa-qrcode"></i></button>
             </div>
             ';
         })
@@ -43,14 +45,21 @@ class PatientController extends Controller
 
     }
 
+    public function qrcode()
+    {
+        //
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $patient = Patient::find($id);
+
+        return response()->json($patient);
     }
 
     /**
